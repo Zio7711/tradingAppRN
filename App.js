@@ -1,21 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
+// import { useDimensions } from '@react-native-community/hooks';
+// import { StatusBar } from 'expo-status-bar';
+// import ViewImageScreen from './app/screens/ViewImageScreen';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import AppText from './app/components/AppText/AppText';
+import AppButton from './app/components/AppButton';
+import WelcomeScreen from './app/screens/WelcomeScreen';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+  return <WelcomeScreen />;
+};
+
+export default App;
