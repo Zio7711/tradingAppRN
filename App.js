@@ -13,10 +13,23 @@ import ListingsScreen from './app/screens/ListingsScreen';
 
 import MessagesScreen from './app/screens/MessagesScreen';
 
+const categories = [
+  { label: 'Furniture', value: 1 },
+  { label: 'Clothing', value: 2 },
+  { label: 'Cameras', value: 3 },
+];
+
 const App = () => {
+  const [category, setCategory] = useState(categories[0]);
   return (
     <Screen>
-      <AppPicker icon="apps" placeholder="Category" />
+      <AppPicker
+        selectedItem={category}
+        onSelectedItem={setCategory}
+        items={categories}
+        icon="apps"
+        placeholder="Category"
+      />
       <AppTextInput icon="email" placeholder="Email" />
     </Screen>
   );
