@@ -9,6 +9,7 @@ import Icon from './app/components/Icon';
 import ListItem from './app/components/ListItem';
 import Screen from './app/components/Screen';
 import AccountScreen from './app/screens/AccountScreen';
+import ListEditScreen from './app/screens/ListEditScreen';
 import ListingsScreen from './app/screens/ListingsScreen';
 import LoginScreen from './app/screens/LoginScreen';
 
@@ -22,7 +23,7 @@ const categories = [
 
 const App = () => {
   const [category, setCategory] = useState(categories[0]);
-  return <LoginScreen />;
+  return <ListEditScreen />;
 };
 
 export default App;
