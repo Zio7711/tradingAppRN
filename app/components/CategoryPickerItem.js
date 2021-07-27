@@ -12,18 +12,17 @@ const CategoryPickerItem = ({ onPress, item }) => {
           name={item.icon}
           size={80}
         />
-        <AppText style={styles.label}>{item.label}</AppText>
       </TouchableOpacity>
+      <AppText style={styles.label}>{item.label}</AppText>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: '33%',
     paddingVertical: 15,
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
     alignItems: 'center',
   },
 
