@@ -25,7 +25,7 @@ const categories = [
 ];
 
 const App = () => {
-  return <MessagesScreen />;
+  return <ListEditScreen />;
 };
 
 export default App;
