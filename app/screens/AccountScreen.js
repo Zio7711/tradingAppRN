@@ -3,6 +3,7 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import Icon from '../components/Icon';
 import ListItem from '../components/ListItem';
 import ListItemSeparator from '../components/ListItemSeparator';
+import NavigationTheme from '../components/navigation/NavigationTheme';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
 
@@ -20,10 +21,11 @@ const menuItems = [
       name: 'email',
       backgroundColor: colors.secondary,
     },
+    targetScreen: 'Messages',
   },
 ];
 
-const AccountScreen = ({}) => {
+const AccountScreen = ({ navigation }) => {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -48,6 +50,9 @@ const AccountScreen = ({}) => {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => {
+                navigation.navigate(item.targetScreen);
+              }}
             />
           )}
         />
