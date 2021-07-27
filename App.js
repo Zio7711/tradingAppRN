@@ -1,31 +1,37 @@
-// import { useDimensions } from '@react-native-community/hooks';
-// import { StatusBar } from 'expo-status-bar';
-// import ViewImageScreen from './app/screens/ViewImageScreen';
-import React, { useState } from 'react';
-import { SafeAreaView, Text, TextInput } from 'react-native';
-import AppPicker from './app/components/AppPicker';
-import AppTextInput from './app/components/AppText/AppTextInput';
-import Icon from './app/components/Icon';
-import ListItem from './app/components/ListItem';
+import React, { useEffect, useState } from 'react';
 import Screen from './app/components/Screen';
-import AccountScreen from './app/screens/AccountScreen';
-import ListEditScreen from './app/screens/ListEditScreen';
-import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
-import ListingsScreen from './app/screens/ListingsScreen';
-import LoginScreen from './app/screens/LoginScreen';
-
-import MessagesScreen from './app/screens/MessagesScreen';
-import ViewImageScreen from './app/screens/ViewImageScreen';
-import WelcomeScreen from './app/screens/WelcomeScreen';
-
-const categories = [
-  { label: 'Furniture', value: 1 },
-  { label: 'Clothing', value: 2 },
-  { label: 'Cameras', value: 3 },
-];
+import * as ImagePicker from 'expo-image-picker';
+import { Button, Image } from 'react-native';
 
 const App = () => {
-  return <ListEditScreen />;
+  const [imageUri, setImageUri] = useState();
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    if (!granted) {
+      alert('You need to enable permimssion to access the library!');
+    }
+  };
+
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchCameraAsync();
+      if (!result.cancelled) {
+        setImageUri(result.uri);
+      }
+    } catch (error) {
+      console.log('Error reading an image', error);
+    }
+  };
+  return (
+    <Screen>
+      <Button title="Select Image" onPress={selectImage} />
+      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+    </Screen>
+  );
 };
 
 export default App;
