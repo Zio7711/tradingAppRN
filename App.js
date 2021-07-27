@@ -10,10 +10,13 @@ import ListItem from './app/components/ListItem';
 import Screen from './app/components/Screen';
 import AccountScreen from './app/screens/AccountScreen';
 import ListEditScreen from './app/screens/ListEditScreen';
+import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
 import ListingsScreen from './app/screens/ListingsScreen';
 import LoginScreen from './app/screens/LoginScreen';
 
 import MessagesScreen from './app/screens/MessagesScreen';
+import ViewImageScreen from './app/screens/ViewImageScreen';
+import WelcomeScreen from './app/screens/WelcomeScreen';
 
 const categories = [
   { label: 'Furniture', value: 1 },
@@ -22,8 +25,7 @@ const categories = [
 ];
 
 const App = () => {
-  const [category, setCategory] = useState(categories[0]);
-  return <ListEditScreen />;
+  return <MessagesScreen />;
 };
 
 export default App;
