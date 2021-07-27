@@ -4,7 +4,6 @@ import {
   FlatList,
   Modal,
   StyleSheet,
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -19,7 +18,9 @@ const AppPicker = ({
   items,
   selectedItem,
   onSelectedItem,
+  numberOfColumns = 1,
   width = '100%',
+  PickerItemComponent = PickerItem,
 }) => {
   const [modalVisivle, setModalVisible] = useState(false);
   return (
@@ -62,8 +63,10 @@ const AppPicker = ({
           <FlatList
             data={items}
             keyExtractor={(item) => item.value.toString()}
+            numColumns={numberOfColumns}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
                   setModalVisible(false);

@@ -8,7 +8,7 @@ import {
   AppFormPicker,
   SubmitButton,
 } from '../components/forms';
-import { Formik } from 'formik';
+import CategoryPickerItem from '../components/CategoryPickerItem';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label('Title'),
@@ -18,9 +18,40 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-  { label: 'Furniture', value: 1 },
-  { label: 'Clothing', value: 2 },
-  { label: 'Camera', value: 3 },
+  {
+    label: 'Furniture',
+    value: 1,
+    backgroundColor: '#fc5c65',
+    icon: 'floor-lamp',
+  },
+  {
+    label: 'Clothing',
+    value: 5,
+    backgroundColor: '#2bcbba',
+    icon: 'shoe-heel',
+  },
+  { label: 'Camera', value: 3, backgroundColor: '#fed330', icon: 'camera' },
+  { label: 'Cars', value: 4, backgroundColor: '#fd9644', icon: 'car' },
+  {
+    label: 'Games',
+    value: 5,
+    backgroundColor: '#26de81',
+    icon: 'gamepad-square',
+  },
+  {
+    label: 'Sports',
+    value: 6,
+    backgroundColor: '#45aaf2',
+    icon: 'basketball',
+  },
+  { label: 'Books', value: 7, backgroundColor: 'purple', icon: 'book' },
+  {
+    label: 'Movies & Music',
+    value: 8,
+    backgroundColor: '#4b7bec',
+    icon: 'headphones',
+  },
+  { label: 'Others', value: 9, backgroundColor: 'grey', icon: 'more' },
 ];
 const ListEditScreen = () => {
   return (
@@ -44,10 +75,12 @@ const ListEditScreen = () => {
           width={120}
         />
         <AppFormPicker
+          numberOfColumns={3}
           items={categories}
           name="category"
           placeholder="Category"
           width="50%"
+          PickerItemComponent={CategoryPickerItem}
         />
         <AppFormField
           multiline
