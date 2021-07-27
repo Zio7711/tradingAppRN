@@ -7,7 +7,7 @@ import ImageInput from './app/components/ImageInput';
 const App = () => {
   const [imageUri, setImageUri] = useState();
   const requestPermission = async () => {
-    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!granted) {
       alert('You need to enable permimssion to access the library!');
     }
@@ -19,7 +19,7 @@ const App = () => {
 
   const selectImage = async () => {
     try {
-      const result = await ImagePicker.launchCameraAsync();
+      const result = await ImagePicker.launchImageLibraryAsync();
       if (!result.cancelled) {
         setImageUri(result.uri);
       }
@@ -29,9 +29,10 @@ const App = () => {
   };
   return (
     <Screen>
-      <Button title="Select Image" onPress={selectImage} />
-      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-      <ImageInput imageUri={imageUri} />
+      <ImageInput
+        onChangeImage={(uri) => setImageUri(uri)}
+        imageUri={imageUri}
+      />
     </Screen>
   );
 };
