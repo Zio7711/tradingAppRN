@@ -6,15 +6,14 @@ import Card from '../components/Card';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
 import routes from '../components/navigation/routes';
-import twitterAPI from '../api/client';
+import listingsApi from '../api/listings';
 import { useState } from 'react';
 
 const ListingsScreen = ({ navigation }) => {
   const [listings, setListings] = useState([]);
 
   const loadListings = async () => {
-    const response = await twitterAPI.get('/listings');
-    console.log(response);
+    const response = await listingsApi.getListings;
     setListings(response.data);
   };
 
