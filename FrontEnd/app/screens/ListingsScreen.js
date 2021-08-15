@@ -2,51 +2,32 @@ import React, { useEffect } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import Button from '../components/AppButton';
 import Card from '../components/Card';
-import client from '../api/client';
 import Screen from '../components/Screen';
 import colors from '../config/colors';
 import routes from '../components/navigation/routes';
-import { useState } from 'react';
 import AppText from '../components/AppText/AppText';
 import ActivityIndicator from '../components/ActivityIndicator';
+import { useApi } from '../hooks/useApi';
 
 const ListingsScreen = ({ navigation }) => {
-  const [listings, setListings] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  const loadListings = async () => {
-    setLoading(true);
-    client
-      .get('/listings')
-      .then((res) => {
-        setListings(res.data);
-        setError(false);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setError(true);
-        setLoading(false);
-      });
-  };
+  const getListingsApi = useApi('/listings');
 
   useEffect(() => {
-    loadListings();
+    getListingsApi.request();
   }, []);
 
   return (
     <Screen style={styles.screen}>
-      {error && (
+      {getListingsApi.error && (
         <>
-          <AppText> Coould not retreive the listings.</AppText>
+          <AppText> Could not retrieve the listings.</AppText>
           <Button title="Retry" onPress={loadListings}></Button>
         </>
       )}
-      <ActivityIndicator visible={loading} />
+      <ActivityIndicator visible={getListingsApi.loading} />
 
       <FlatList
-        data={listings}
+        data={getListingsApi.data}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
           <Card
