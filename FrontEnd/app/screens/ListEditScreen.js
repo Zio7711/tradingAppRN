@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import Screen from '../components/Screen';
+import listingApi from '../api/listings';
 import * as Yup from 'yup';
 
 import {
@@ -60,6 +61,12 @@ const categories = [
 
 const ListEditScreen = () => {
   const location = useLocation();
+  const handleSubmit = (listing) => {
+    listingApi
+      .addListing({ ...listing, location })
+      .then(console.log('success!'))
+      .catch((err) => console.log('error in Add listing', err));
+  };
   return (
     <Screen style={styles.container}>
       <AppForm
@@ -70,7 +77,7 @@ const ListEditScreen = () => {
           category: null,
           images: [],
         }}
-        onSubmit={(values) => console.log(location)}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormImagePicker name="images" />
