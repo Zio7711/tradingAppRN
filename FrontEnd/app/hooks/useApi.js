@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import client from '../api/client';
+import { getListings } from '../api/listings';
 
-const useApi = (endpoint) => {
+const useApi = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const request = async () => {
     setLoading(true);
-    client
-      .get(endpoint)
+    getListings
       .then((res) => {
         setData(res.data);
         setError(false);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import Button from '../components/AppButton';
 import Card from '../components/Card';
@@ -10,7 +10,7 @@ import ActivityIndicator from '../components/ActivityIndicator';
 import { useApi } from '../hooks/useApi';
 
 const ListingsScreen = ({ navigation }) => {
-  const getListingsApi = useApi('/listings');
+  const getListingsApi = useApi();
 
   useEffect(() => {
     getListingsApi.request();
