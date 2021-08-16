@@ -13,7 +13,6 @@ const useLocation = () => {
       const {
         coords: { latitude, longitude },
       } = await Location.getLastKnownPositionAsync();
-      console.log('coordinates', latitude, longitude);
       setLocation({ latitude, longitude });
     } catch (error) {
       console.log('error in use location', error);

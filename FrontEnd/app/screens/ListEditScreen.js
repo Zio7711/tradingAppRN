@@ -66,18 +66,23 @@ const ListEditScreen = () => {
   const [progress, setProgress] = useState(0);
 
   const handleSubmit = (listing) => {
+    setProgress(0);
     setUploadVisible(true);
     listingApi
       .addListing({ ...listing, location }, (progress) => setProgress(progress))
-      .then(console.log('success!'))
-      .then(() => {
+
+      .catch((err) => {
         setUploadVisible(false);
-      })
-      .catch((err) => console.log('error in Add listing', err));
+        console.log('error in Add listing', err);
+      });
   };
   return (
     <Screen style={styles.container}>
-      <UploadScreen progress={progress} visible={uploadVisible} />
+      <UploadScreen
+        onDone={() => setUploadVisible(false)}
+        progress={progress}
+        visible={uploadVisible}
+      />
       <AppForm
         initialValues={{
           title: '',
