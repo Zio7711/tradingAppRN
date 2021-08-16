@@ -3,12 +3,12 @@ import { getListings } from '../api/listings';
 
 const useApi = () => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const request = async () => {
+  const request = () => {
     setLoading(true);
-    getListings
+    getListings()
       .then((res) => {
         setData(res.data);
         setError(false);
