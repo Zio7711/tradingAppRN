@@ -65,12 +65,12 @@ const ListEditScreen = () => {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  const handleSubmit = (listing) => {
+  const handleSubmit = (listing, { resetForm }) => {
     setProgress(0);
     setUploadVisible(true);
     listingApi
       .addListing({ ...listing, location }, (progress) => setProgress(progress))
-
+      .then(() => resetForm())
       .catch((err) => {
         setUploadVisible(false);
         console.log('error in Add listing', err);
