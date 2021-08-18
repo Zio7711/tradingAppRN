@@ -10,7 +10,8 @@ const App = () => {
     <>
       <OfflineNotice />
       <NavigationContainer theme={NavigationTheme}>
-        <AppNavigator style={{ zIndex: -1 }} />
+        {/* <AppNavigator style={{ zIndex: -1 }} /> */}
+        <AuthNavigator />
       </NavigationContainer>
     </>
   );

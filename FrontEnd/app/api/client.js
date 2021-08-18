@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cache from '../utility/cache';
 const client = axios.create({
-  baseURL: 'http://172.17.236.190:8000/api',
+  baseURL: 'http://172.17.171.67:8000/api',
   timeout: 1000,
 });
 
