@@ -6,11 +6,11 @@ const client = axios.create({
   timeout: 1000,
 });
 
-client.addAsyncRequestTransform(async (request) => {
-  const authToken = await authStorage.getToken();
-  if (!authToken) return;
-  request.headers['x-auth-token'] = authToken;
-});
+// client.addAsyncRequestTransform(async (request) => {
+//   const authToken = await authStorage.getToken();
+//   if (!authToken) return;
+//   request.headers['x-auth-token'] = authToken;
+// });
 
 //below is the async cache layer which failed
 //
