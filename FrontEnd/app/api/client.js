@@ -2,7 +2,7 @@ import axios from 'axios';
 import authStorage from '../auth/storage';
 // import cache from '../utility/cache';
 const client = axios.create({
-  baseURL: 'http://172.17.171.67:8000/api',
+  baseURL: 'http://192.168.248.53:8000/api',
   timeout: 1000,
 });
 
